@@ -18,12 +18,21 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
+    public boolean deleteCompanyById(Long id) {
+        if (companyRepository.existsById(id)) {
+            companyRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public List<Company> findAllCompany() {
         return companyRepository.findAll();
     }
 
     @Override
-    public void createCompanies(Company company) {
+    public void createCompany(Company company) {
         companyRepository.save(company);
     }
 
@@ -40,5 +49,10 @@ public class CompanyServiceImpl implements CompanyService {
         }
         return false;
 
+    }
+
+    @Override
+    public Company getCompanyById(Long id) {
+       return companyRepository.findById(id).orElse(null);
     }
 }
