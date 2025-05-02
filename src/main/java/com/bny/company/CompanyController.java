@@ -25,5 +25,11 @@ public class CompanyController {
         companyService.createCompanies(company);
         return new ResponseEntity<>("Company created successfully", HttpStatus.CREATED);
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<String> updatedCompany(@PathVariable Long id,
+                                                  @RequestBody Company company) {
+        companyService.updateCompany(company, id);
+        return new ResponseEntity<>("Company updated successfully", HttpStatus.OK);
+    }
 
 }
